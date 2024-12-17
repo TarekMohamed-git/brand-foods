@@ -1,0 +1,147 @@
+
+
+<form action="{{ route('update.order.details', ['order_id' => $orderDetail->order_id, 'product_id' => $orderDetail->product_id, 'id' => $orderDetail->id]) }}"
+                      method="POST">
+                  @csrf <!-- Add the CSRF token for security -->
+
+
+#################################
+
+
+@extends('layouts.admin.app')
+
+@section('title', translate('Update product'))
+
+@push('css_or_js')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="{{asset('public/assets/admin/css/tags-input.min.css')}}" rel="stylesheet">
+@endpush
+
+@section('content')
+
+<?php
+echo "<pre>";
+// echo $orderDetail."<br>";
+
+$product_details = json_decode($orderDetail->product_details);
+print_r($orderDetail->order_id) ;
+// echo $product_details->name .'<br>';
+// echo $product_details->description .'<br>';
+// echo $product_details->price .'<br>';
+// dd($orderDetail->price);
+
+?>
+
+{{--<div class="media-body">--}}
+{{--  <h5 class="line--limit-1">{{ $product_details->name }}</h5>--}}
+{{--</div>--}}
+
+@endsection
+
+@push('script')
+
+@endpush
+
+@push('script_2')
+
+@endpush
+
+#############################################
+#############################################
+
+@extends('layouts.admin.app')
+
+
+
+@push('css_or_js')
+
+@endpush
+
+@section('content')
+  <div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="d-flex flex-wrap justify-content-between">
+        <h1 class="page-header-title text-break">
+          <span class="page-header-icon">
+              <img src="{{asset('public/assets/admin/img/product.png')}}" alt="">
+          </span>
+          @php
+            $productDetails = json_decode($orderDetail->product_details);
+          @endphp
+
+          <span>  {{$orderDetail->product_details}}</span>
+        </h1>
+      </div>
+    </div>
+    <!-- End Page Header -->
+
+    <div class="card mb-3 text-sm">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit item</h5>
+
+            </div>
+            <div class="modal-body">
+              <form action="http://kboofdry.local/admin/" method="post">
+
+                <input type="hidden" name="_token" value="BMVUp8a3inRAVSSOm2vpzqUni8YFNm2KzTnXrfom">
+                <div class="row">
+                  <div class="col-12 col-lg-6">
+
+                    <div class="form-group">
+                      <label class="input-label">First name <span class="input-label-secondary text-danger">*</span></label>
+                      <input type="text" name="f_name" class="form-control" value="" placeholder="First name" required="">
+                    </div>
+
+                  </div>
+                  <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                      <label class="input-label">Last name <span class="input-label-secondary text-danger">*</span></label>
+                      <input type="text" name="l_name" class="form-control" value="" placeholder="Last name" required="">
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                      <label class="input-label">Email<span class="input-label-secondary text-danger">*</span></label>
+                      <input type="email" name="email" class="form-control" value="" placeholder="Ex : ex@example.com" required="">
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-lg-6">
+                    <div class="form-group">
+                      <label class="input-label">Phone (With country code)<span class="input-label-secondary text-danger">*</span></label>
+                      <input type="text" name="phone" class="form-control" value="" placeholder="Phone" required="">
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="btn--container justify-content-end">
+                  <button type="reset" class="btn btn--reset">Reset</button>
+                  <button type="submit" id="submit_new_customer" class="btn btn--primary">Submit</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card -->
+
+    <!-- End Card -->
+  </div>
+@endsection
+
+@push('script_2')
+
+@endpush
+
